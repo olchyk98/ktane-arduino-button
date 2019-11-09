@@ -1,6 +1,3 @@
-// TODO: Timer with buttons
-// TODO: Morse tests with stage controll
-
 #include <LiquidCrystal.h>
 #include "OutputStorage.h"
 
