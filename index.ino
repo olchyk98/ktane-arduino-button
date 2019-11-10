@@ -10,10 +10,12 @@ const int solvedPin = 10;
 const int clickPin = 13;
 
 // sys
+
+
 int strikes = 0;
 boolean exploded = false;
 boolean passed = false;
-const long bombTime = 1000L * 60 * .15; // mins
+const long bombTime = 1000L * 60 * .75;
 
 boolean pressed = false;
 uint16_t pressedTime = 0;
@@ -86,7 +88,7 @@ uint16_t secondsLeft() {
 }
 
 void onClick() {
-  if(exploded) return;
+  if(exploded || passed) return;
   
   String col = buttonConfig[1];
   String text = buttonConfig[0];
@@ -96,7 +98,6 @@ void onClick() {
     . If the button is yellow, hold the button and refer to "Releasing a Held Button".
     . If the button is red and the button says "Hold", press and immediately release the button.
     . If none of the above apply, hold the button and refer to "Releasing a Held Button".
-
   */
 
   if (col == "Blue" && text == "Abort") requireHolding();
@@ -113,7 +114,7 @@ void requireHolding() {
 }
 
 void onRelease() {
-  if(exploded) return;
+  if(exploded || passed) return;
 
   int releaseGain = 600; // ms
 
